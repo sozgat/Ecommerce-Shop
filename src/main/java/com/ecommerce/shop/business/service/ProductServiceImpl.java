@@ -1,6 +1,7 @@
 package com.ecommerce.shop.business.service;
 
 import com.ecommerce.shop.business.model.Product;
+import com.ecommerce.shop.business.repository.BaseJPARepository;
 import com.ecommerce.shop.business.repository.ProductJPARepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,16 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl extends BaseServiceImpl<Product> implements ProductService{
 
-    private final ProductJPARepository productJPARepository;
-
-    public ProductServiceImpl(ProductJPARepository productJPARepository) {
-        this.productJPARepository = productJPARepository;
-    }
-
-    @Override
-    public List<Product> findAll() {
-        return productJPARepository.findAll();
+    public ProductServiceImpl(BaseJPARepository baseJPARepository) {
+        super(baseJPARepository);
     }
 }
