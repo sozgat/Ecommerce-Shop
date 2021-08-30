@@ -30,9 +30,10 @@ public class ProductApplicationListener implements ApplicationListener<Applicati
         try {
             List<Product> productAll = productService.findAll();
             if (productAll.isEmpty()){
+                Faker faker = new Faker();
+
                 for (int i = 0; i < 4 ; i++) {
                     Product product = new Product();
-                    Faker faker = new Faker();
 
                     product.setUuid(UUID.randomUUID().toString());
                     product.setName(faker.book().title());
