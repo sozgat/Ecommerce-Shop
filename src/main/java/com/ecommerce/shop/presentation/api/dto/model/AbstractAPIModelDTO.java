@@ -1,5 +1,8 @@
 package com.ecommerce.shop.presentation.api.dto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public abstract class AbstractAPIModelDTO {
 
     private String uuid;
@@ -13,6 +16,7 @@ public abstract class AbstractAPIModelDTO {
         this.uuid = uuid;
     }
 
+    @JsonIgnore()
     public long getVersion() {
         return version;
     }
