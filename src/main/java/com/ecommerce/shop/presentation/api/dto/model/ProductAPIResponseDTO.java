@@ -4,7 +4,7 @@ public class ProductAPIResponseDTO extends AbstractAPIModelDTO{
 
     private String name;
     private String description;
-    private String price;
+    private float price;
 
     public String getName() {
         return name;
@@ -22,11 +22,11 @@ public class ProductAPIResponseDTO extends AbstractAPIModelDTO{
         this.description = description;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 }

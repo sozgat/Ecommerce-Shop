@@ -20,7 +20,7 @@ public class Product extends AbstractBaseModel {
     private String description;
 
     @Column(name = ProjectConstants.TableConstants.Product.PRICE)
-    private String price;
+    private float price;
 
     public String getUuid() {
         return uuid;
@@ -46,11 +46,11 @@ public class Product extends AbstractBaseModel {
         this.description = description;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 }
