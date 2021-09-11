@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Table(name = ProjectConstants.TableConstants.PRODUCT_TABLE_NAME)
 public class Product extends AbstractBaseModel {
 
+    //Test
     @Column(name = ProjectConstants.UUID_COLUMN_NAME, length = 36, unique = true, nullable = false, updatable = false)
     private String uuid;
 
