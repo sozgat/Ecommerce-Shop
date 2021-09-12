@@ -14,6 +14,7 @@ public class ProjectConstants {
 
     public class TableConstants {
         public static final String PRODUCT_TABLE_NAME = "PRODUCT";
+        public static final String USER_TABLE_NAME = "USER";
 
         public class Product{
             public static final String NAME = "name";

@@ -32,3 +32,7 @@ server:
     encoding:
       charset: UTF-8
       force: true
+eshop:
+  app:
+    jwtSecret: wi0XwUBSZTmz7vLlUNsu
+    jwtExpirationMs: 30000

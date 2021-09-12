@@ -12,7 +12,12 @@ import java.util.List;
 @Service
 public class ProductServiceImpl extends BaseServiceImpl<Product> implements ProductService{
 
-    public ProductServiceImpl(BaseJPARepository baseJPARepository) {
-        super(baseJPARepository);
+    private final ProductJPARepository productJPARepository;
+
+    public ProductServiceImpl(ProductJPARepository productJPARepository) {
+        super(productJPARepository);
+        this.productJPARepository = productJPARepository;
     }
+
+
 }

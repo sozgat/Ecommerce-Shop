@@ -18,7 +18,7 @@ import java.util.UUID;
 public class ProductApplicationListener implements ApplicationListener<ApplicationReadyEvent> {
 
     private final ProductService productService;
-    private static final Logger log =  LoggerFactory.getLogger(ProductApplicationListener.class);
+    private static final Logger log = LoggerFactory.getLogger(ProductApplicationListener.class);
 
 
     public ProductApplicationListener(ProductService productService) {
@@ -29,24 +29,23 @@ public class ProductApplicationListener implements ApplicationListener<Applicati
     public void onApplicationEvent(ApplicationReadyEvent applicationReadyEvent) {
         try {
             List<Product> productAll = productService.findAll();
-            if (productAll.isEmpty()){
+            if (productAll.isEmpty()) {
                 Faker faker = new Faker();
 
-                for (int i = 0; i < 4 ; i++) {
+                for (int i = 0; i < 4; i++) {
                     Product product = new Product();
 
                     product.setUuid(UUID.randomUUID().toString());
                     product.setName(faker.book().title());
                     product.setDescription(faker.lorem().sentence(6));
-                    product.setPrice((float) faker.number().randomDouble(2,300,1000));
+                    product.setPrice((float) faker.number().randomDouble(2, 300, 1000));
 
                     productService.save(product);
                     log.info("Row was created. id = {} ", product.getId());
                 }
             }
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             log.error("Application has encountered an error!", e);
         }
     }
