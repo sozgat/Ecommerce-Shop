@@ -1,8 +1,15 @@
 package com.ecommerce.shop.presentation.api.dto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 public class LoginAPIResponseDTO extends AbstractAPIModelDTO{
+
+    @JsonIgnore
+    private String uuid;
+    @JsonIgnore
+    private long version;
 
     private String token;
     private String type = "Basic";

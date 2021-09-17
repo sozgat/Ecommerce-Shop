@@ -5,12 +5,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import javax.persistence.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Entity
@@ -29,10 +25,6 @@ public class User extends AbstractBaseModel implements UserDetails {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    //@Size(min = 3, max = 50, groups = {UserValidationForm.class})
-    @Column(name = "username", unique = true)
-    private String username;
-
     // @Email(groups = {UserValidationForm.class, UserValidationEdit.class})
     @Column(name = "email")
     private String email;
@@ -42,9 +34,14 @@ public class User extends AbstractBaseModel implements UserDetails {
     private String password;
 
     // @NotNull(groups = {UserValidationForm.class, UserValidationEdit.class})
-    // @ManyToOne
-    // @JoinColumn(name = "role_id", nullable = false)
-    // private Role role;
+    //@ManyToOne
+    //@JoinColumn(name = "role_id", nullable = false)
+    @ManyToMany
+    @JoinTable(
+            name = "USER_ROLE",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -67,18 +64,10 @@ public class User extends AbstractBaseModel implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
+    public void setUsername(String email) {
         this.email = email;
     }
 
@@ -90,30 +79,25 @@ public class User extends AbstractBaseModel implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-/*
-    public Role getRole() {
-        return role;
+
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
-*/
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        List<GrantedAuthority> authorities = new ArrayList<>();
-
+    //    List<GrantedAuthority> authorities = new ArrayList<>();
     //    for (String permission : this.role.getPermissions()) {
     //        authorities.add(new SimpleGrantedAuthority(permission));
     //    }
-        /*
-        return  this.role.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+        return  this.roles.stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
-        * */
-
-        return authorities;
+    //    return authorities;
     }
 
     @Override

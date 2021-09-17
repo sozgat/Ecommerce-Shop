@@ -7,5 +7,6 @@ import java.util.Optional;
 public interface UserJPARepository extends BaseJPARepository<User,Long> {
 
     Optional<User> findByEmail(String email);
+    boolean existsByEmail(String email);
 
 }

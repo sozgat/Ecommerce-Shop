@@ -52,7 +52,7 @@ public class AuthController {
 
         APIResponseDTO<LoginAPIResponseDTO> apiResponse = new APIResponseDTO<>(HttpStatus.OK,
                 new LoginAPIResponseDTO(jwt,"Bearer",
-                userDetails.getEmail(),
+                userDetails.getUsername(),
                 roles));
 
         return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
