@@ -38,3 +38,9 @@ eshop:
     jwtSecret: wi0XwUBSZTmz7vLlUNsu
     jwtExpirationMs: 30000
     jwtRefreshExpirationMs: 100000
+
+springdoc:
+  api-docs:
+    path: api/public/docs
+  swagger-ui:
+    path: /api/public/swagger-ui.html

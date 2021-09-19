@@ -47,18 +47,17 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 // Set unauthorized requests exception handler
                 .exceptionHandling()
                 .authenticationEntryPoint(
-                        (request, response, ex) -> {
-                            response.sendError(
-                                    HttpServletResponse.SC_UNAUTHORIZED,
-                                    ex.getMessage()
-                            );
-                        }
+                        (request, response, ex) -> response.sendError(
+                                HttpServletResponse.SC_UNAUTHORIZED,
+                                ex.getMessage()
+                        )
                 )
                 .and()
                 // Set permissions on endpoints
                 .authorizeRequests()
                 // public endpoints
                 .antMatchers("/api/auth/*").permitAll()
+                .antMatchers("/api/public/**").permitAll()
                 // .antMatchers(MappingConstant.DEFAULT_API_PATH + "/**").permitAll()
                 // .antMatchers(MappingConstant.DEFAULT_TRANSACTION_PATH + "/**").permitAll()
                 // private endpoints

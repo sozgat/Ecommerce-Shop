@@ -75,6 +75,17 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
         </dependency>
+
+        <!-- SWAGGER - OPENAPI -->
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
+        <!-- TEST -->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
