@@ -12,6 +12,7 @@ public class AppProperties {
     public static class Security {
         private String jwtSecret;
         private Long jwtExpirationMs;
+        private Long jwtRefreshExpirationMs;
 
         public String getJwtSecret() {
             return jwtSecret;
@@ -27,6 +28,14 @@ public class AppProperties {
 
         public void setJwtExpirationMs(Long jwtExpirationMs) {
             this.jwtExpirationMs = jwtExpirationMs;
+        }
+
+        public Long getJwtRefreshExpirationMs() {
+            return jwtRefreshExpirationMs;
+        }
+
+        public void setJwtRefreshExpirationMs(Long jwtRefreshExpirationMs) {
+            this.jwtRefreshExpirationMs = jwtRefreshExpirationMs;
         }
     }
 

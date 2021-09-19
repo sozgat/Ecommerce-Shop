@@ -12,15 +12,17 @@ public class LoginAPIResponseDTO extends AbstractAPIModelDTO{
     private long version;
 
     private String token;
+    private String refreshToken;
     private String type = "Basic";
     private String username;
     private List roles;
 
-    public LoginAPIResponseDTO(String token, String type, String username, List roles) {
+    public LoginAPIResponseDTO(String token, String type, String username, List roles, String refreshToken) {
         this.token = token;
         this.type = type;
         this.username = username;
         this.roles = roles;
+        this.refreshToken = refreshToken;
     }
 
     public String getToken() {
@@ -53,5 +55,13 @@ public class LoginAPIResponseDTO extends AbstractAPIModelDTO{
 
     public void setRoles(List roles) {
         this.roles = roles;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 }

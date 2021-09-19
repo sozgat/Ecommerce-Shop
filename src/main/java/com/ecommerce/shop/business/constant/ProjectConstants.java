@@ -17,6 +17,13 @@ public class ProjectConstants {
         public static final String USER_TABLE_NAME = "USER";
         public static final String ROLE_TABLE_NAME = "ROLE";
         public static final String ROLE_PERMISSION_TABLE_NAME = "ROLE_PERMISSION";
+        public static final String REFRESH_TOKEN_TABLE_NAME = "REFRESH_TOKEN";
+
+        public class RefreshToken{
+            public static final String TOKEN = "token";
+            public static final String REFRESH_TOKEN = "refresh_token";
+            public static final String EXPIRE_DATE = "expire_date";
+        }
 
         public class Product{
             public static final String NAME = "name";

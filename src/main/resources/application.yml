@@ -36,4 +36,5 @@ server:
 eshop:
   security:
     jwtSecret: wi0XwUBSZTmz7vLlUNsu
-    jwtExpirationMs: 600000
+    jwtExpirationMs: 30000
+    jwtRefreshExpirationMs: 100000

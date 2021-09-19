@@ -28,14 +28,12 @@ public class UserApplicationListener implements ApplicationListener<ApplicationR
     private final UserService userService;
     private final RoleService roleService;
     private final PermissionService permissionService;
-    private final PasswordEncoder passwordEncoder;
 
     public UserApplicationListener(UserService userService, RoleService roleService,
-                                   PermissionService permissionService, PasswordEncoder passwordEncoder) {
+                                   PermissionService permissionService) {
         this.userService = userService;
         this.roleService = roleService;
         this.permissionService = permissionService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -54,7 +52,8 @@ public class UserApplicationListener implements ApplicationListener<ApplicationR
                     user.setUsername(rawValues[0]);
                     user.setFirstName(rawValues[1]);
                     user.setLastName(rawValues[2]);
-                    user.setPassword( passwordEncoder.encode(rawValues[3]) );
+                    user.setPassword(String.valueOf(rawValues[3]));
+
                     HashSet<Role> roles = Arrays.stream(rawValues[4].split("\\|"))
                             .map(m -> {
                                 String name = "ROLE_" + m.toUpperCase(Locale.ROOT);

@@ -21,16 +21,24 @@ public class JwtTokenUtil {
         this.securityProperties = securityProperties;
     }
 
-    public String generateJwtToken(Authentication authentication) {
-        User userPrincipal = (User) authentication.getPrincipal();
-
+    public String generateJwtToken(String username) {
         return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
+                .setSubject((username))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + securityProperties.getSecurity().getJwtExpirationMs()))
                 .signWith(SignatureAlgorithm.HS512, securityProperties.getSecurity().getJwtSecret())
                 .compact();
     }
+
+    public String generateRefreshJwtToken(String username) {
+        return Jwts.builder()
+                .setSubject((username))
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + securityProperties.getSecurity().getJwtRefreshExpirationMs()))
+                .signWith(SignatureAlgorithm.HS512, securityProperties.getSecurity().getJwtSecret())
+                .compact();
+    }
+
 
     public String getUsername(String token) {
         return Jwts.parser().setSigningKey(securityProperties.getSecurity().getJwtSecret()).parseClaimsJws(token).getBody().getSubject();
