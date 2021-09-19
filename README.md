@@ -9,3 +9,12 @@ docker run -it -e TZ='Europe/Istanbul' --name mysql8 -e MYSQL_ROOT_PASSWORD='roo
 http://localhost:8080/api/public/swagger-ui.html
 ```
 
+## Default created data
+
+
+### User Table
+|username|name|surname|pass|role|permissions|
+|:---:|:---:|---:|---|:---:|:---:|
+|yk@gmail.com| Yasin| Kılınç|123123|ROLE_ADMIN|VIEW_PROFILE,VIEW_DASHBOARD
+
+
