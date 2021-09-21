@@ -1,7 +1,10 @@
 package com.ecommerce.shop.presentation.api.dto.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 public class LoginAPIResponseDTO extends AbstractAPIModelDTO{
@@ -15,9 +18,9 @@ public class LoginAPIResponseDTO extends AbstractAPIModelDTO{
     private String refreshToken;
     private String type = "Basic";
     private String username;
-    private List roles;
+    private Collection<? extends GrantedAuthority> roles;
 
-    public LoginAPIResponseDTO(String token, String type, String username, List roles, String refreshToken) {
+    public LoginAPIResponseDTO(String token, String type, String username, Collection<? extends GrantedAuthority> roles, String refreshToken) {
         this.token = token;
         this.type = type;
         this.username = username;
@@ -49,11 +52,11 @@ public class LoginAPIResponseDTO extends AbstractAPIModelDTO{
         this.username = username;
     }
 
-    public List getRoles() {
+    public Collection<? extends GrantedAuthority> getRoles() {
         return roles;
     }
 
-    public void setRoles(List roles) {
+    public void setRoles(Collection<? extends GrantedAuthority> roles) {
         this.roles = roles;
     }
 

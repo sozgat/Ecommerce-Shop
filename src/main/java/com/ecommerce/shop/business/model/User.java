@@ -90,14 +90,30 @@ public class User extends AbstractBaseModel implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-    //    List<GrantedAuthority> authorities = new ArrayList<>();
+    //    Set<GrantedAuthority> authorities = new HashSet<>();
     //    for (String permission : this.role.getPermissions()) {
     //        authorities.add(new SimpleGrantedAuthority(permission));
     //    }
-        return  this.roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
-    //    return authorities;
+    /*
+        for (Role role : this.roles) {
+            for(Permission perm: role.getPermissions()){
+                authorities.add(new SimpleGrantedAuthority(perm.getPermissionName()));
+            }
+        }
+    */
+         return this.roles.stream().flatMap(role ->
+                role.getPermissions().stream().map(p -> new SimpleGrantedAuthority(p.getPermissionName()))
+        ).collect(Collectors.toSet());
+
+/*
+        Set<Set<SimpleGrantedAuthority>> collect = this.roles.stream().map(role ->
+                role.getPermissions().stream().map(perm ->
+                                new SimpleGrantedAuthority(perm.getPermissionName()))
+                        .collect(Collectors.toSet())
+        ).collect(Collectors.toSet());
+
+ */
+        //   return authorities;
     }
 
     @Override

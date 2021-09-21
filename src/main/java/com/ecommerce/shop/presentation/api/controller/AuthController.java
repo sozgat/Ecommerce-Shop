@@ -51,14 +51,11 @@ public class AuthController {
         String refreshJwtToken = jwtUtils.generateRefreshJwtToken(userPrincipal.getUsername());
 
         User userDetails = (User) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
-                .collect(Collectors.toList());
 
         APIResponseDTO<LoginAPIResponseDTO> apiResponse = new APIResponseDTO<>(HttpStatus.OK,
                 new LoginAPIResponseDTO(jwt,"Bearer",
                 userDetails.getUsername(),
-                roles, refreshJwtToken));
+                userDetails.getAuthorities(), refreshJwtToken));
 
         return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
     }
@@ -72,14 +69,11 @@ public class AuthController {
         String refreshJwtToken = jwtUtils.generateRefreshJwtToken(userName);
 
         UserDetails userDetails = userService.loadUserByUsername(userName);
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
-                .collect(Collectors.toList());
 
         APIResponseDTO<LoginAPIResponseDTO> apiResponse = new APIResponseDTO<>(HttpStatus.OK,
         new LoginAPIResponseDTO(jwt,"Bearer",
                 userName,
-                roles, refreshJwtToken));
+                userDetails.getAuthorities(), refreshJwtToken));
 
         return ResponseEntity.status(apiResponse.getStatus()).body(apiResponse);
     }

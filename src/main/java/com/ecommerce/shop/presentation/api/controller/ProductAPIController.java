@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,14 +29,12 @@ public class ProductAPIController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('VIEW_PROFILE')")
     public ResponseEntity<APIResponseDTO<List<ProductAPIResponseDTO>>> products(){
         /* ProductAPIResponseDTO productAPIResponseDTO = new ProductAPIResponseDTO();
         productAPIResponseDTO.setName("1");
         productAPIResponseDTO.setUuid(UUID.randomUUID().toString());
-
          */
-
-
         List<ProductAPIResponseDTO> productAPIResponseDTO= ProductAPIMapper.fromDomain(productService.findAll());
 
         APIResponseDTO<List<ProductAPIResponseDTO>> apiResponse = new APIResponseDTO<>(HttpStatus.OK,productAPIResponseDTO);

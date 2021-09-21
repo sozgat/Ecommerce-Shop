@@ -4,9 +4,7 @@ import com.ecommerce.shop.business.constant.ProjectConstants;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = ProjectConstants.TableConstants.ROLE_TABLE_NAME)
@@ -20,8 +18,8 @@ public class Role extends AbstractBaseModel{
     private String description;
 
    // @Column(name = "permission_name")
-    @OneToMany(mappedBy="permissionName")
-    private List<Permission> permissions = new ArrayList<>();
+    @OneToMany(mappedBy="role", fetch = FetchType.EAGER)
+    private Set<Permission> permissions = new HashSet<>();
 
     public Role() {
     }
@@ -46,11 +44,11 @@ public class Role extends AbstractBaseModel{
         this.description = description;
     }
 
-    public List<Permission> getPermissions() {
+    public Set<Permission> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<Permission> permissions) {
+    public void setPermissions(Set<Permission> permissions) {
         this.permissions = permissions;
     }
 }
