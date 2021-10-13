@@ -1,4 +1,8 @@
 # e-shop-be
+
+## HEROKU
+Project is running on Heroku https://eshopbe.herokuapp.com/api/public/swagger-ui/index.html
+
 ## Mysql for Docker
 
 ```bash
