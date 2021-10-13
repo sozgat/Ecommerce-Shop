@@ -13,8 +13,16 @@ http://localhost:8080/api/public/swagger-ui.html
 
 
 ### User Table
-|username|name|surname|pass|role|permissions|
+|email|name|surname|pass|role|permissions|
 |:---:|:---:|---:|---|:---:|:---:|
 |yk@gmail.com| Yasin| Kılınç|123123|ROLE_ADMIN|VIEW_PROFILE,VIEW_DASHBOARD
 
+## Run Docker Project
+* Firstly, you need to run **mvn clean and install** on IntelliJ IDEA.
+
+```bash
+docker-compose up
+```
+
+You can access project http://localhost:8082
 
